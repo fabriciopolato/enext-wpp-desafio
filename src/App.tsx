@@ -1,10 +1,12 @@
 import React from 'react';
-import MainPage from './Pages/MainPage';
 import { ContextProvider } from './hooks/useBreed';
+import Routes from './routes/Routes';
+import GlobalStyle from './styles/global';
 
 const App = () => (
   <ContextProvider>
-    <MainPage />
+    <Routes />
+    <GlobalStyle />
   </ContextProvider>
 );
 

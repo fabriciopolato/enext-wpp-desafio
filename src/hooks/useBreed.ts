@@ -5,7 +5,7 @@ const useBreed = (): IContext => {
   const context = useContext(Context);
 
   if (!context) {
-    throw new Error('useBreed must be used within an ContextProvider');
+    throw new Error('useBreed must be used within a ContextProvider');
   }
 
   return context;

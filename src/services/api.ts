@@ -19,11 +19,20 @@ interface IDogImages {
   message: string[];
 }
 
-export const getDogImages = async (breed: string): Promise<IDogImages | Error> => {
+export interface IDogImagesResponse {
+  image: string;
+  id: string;
+}
+
+export const getDogImages = async (breed: string): Promise<IDogImagesResponse[] | Error> => {
   try {
     const response = await fetch(`${apiURL}/breed/${breed}/images`);
-    const json = await response.json();
-    return json;
+    const json: IDogImages = await response.json();
+    const objectDog = json.message.map(image => {
+      const id = image.replace(/.*\/([\w|\d|_]+)\.jpg/g, '$1');
+      return { image, id };
+    });
+    return objectDog;
   } catch (error) {
     console.log(error);
     throw new Error('No response from the API');

@@ -5,6 +5,10 @@ import { useBreed } from '../../hooks/useBreed';
 import { Navbar, Select } from '../../components';
 import fonts from '../../utils/fonts.json';
 import colors from '../../utils/colors.json';
+import {
+  getDogsInfoFromLocalStorage,
+  setDogsInfoInLocalStorage,
+} from '../../services/localStorage';
 
 interface Params {
   id: string;
@@ -22,6 +26,7 @@ const DogDetails: React.FC = () => {
     font,
     color,
     setDogName,
+    dogName,
   } = useBreed();
 
   useEffect(() => {
@@ -34,10 +39,31 @@ const DogDetails: React.FC = () => {
 
   useEffect(() => {
     setDogName('');
-    //checar no local storage
-  }, [setDogName]);
+    setColor('');
+    setFont('');
+    const savedDog = getDogsInfoFromLocalStorage(selectedDog.id);
 
-  const handleSaveOnLocalStorage = () => {};
+    if (savedDog) {
+      setDogName(savedDog.name);
+      setColor(savedDog.color);
+      setFont(savedDog.font);
+    }
+
+    console.log(savedDog);
+  }, [setDogName, setColor, setFont]);
+
+  const handleSaveDogOnLocalStorage = () => {
+    const dogsInfo = {
+      image: selectedDog.image,
+      id: selectedDog.id,
+      name: dogName,
+      font,
+      color,
+      date: new Date(),
+    };
+
+    setDogsInfoInLocalStorage(dogsInfo);
+  };
 
   return (
     <>
@@ -45,9 +71,10 @@ const DogDetails: React.FC = () => {
       <Container>
         <img src={selectedDog.image} alt={selectedBreed} />
         <input
-          onChange={e => setDogName(e.target.value)}
-          placeholder="Give a name to the dog"
           type="text"
+          placeholder="Give a name to the dog"
+          onChange={e => setDogName(e.target.value)}
+          value={dogName}
         />
         <Select value={font} setState={setFont} options={fonts}>
           Font
@@ -55,7 +82,7 @@ const DogDetails: React.FC = () => {
         <Select value={color} setState={setColor} options={colors}>
           Color
         </Select>
-        <button onClick={handleSaveOnLocalStorage}>Save</button>
+        <button onClick={handleSaveDogOnLocalStorage}>Save</button>
       </Container>
     </>
   );

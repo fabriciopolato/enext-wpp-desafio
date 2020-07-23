@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container } from './styles';
+import { Container, Grid } from './styles';
 import { Select, Navbar } from '../../components';
 import { getAllBreeds, getDogImages } from '../../services/api';
 import { useBreed } from '../../hooks/useBreed';
@@ -52,10 +52,12 @@ const MainPage: React.FC = () => {
     <>
       <Navbar />
       <Container>
-        {dogImages.map(image => (
-          <DogImageCard key={image} dog={image} />
-        ))}
         <Select options={breeds}></Select>
+        <Grid>
+          {dogImages.map(image => (
+            <DogImageCard key={image} dog={image} />
+          ))}
+        </Grid>
       </Container>
       {/* <Footer/> */}
     </>

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Container, Grid } from './styles';
 import { Select, Navbar } from '../../components';
-import { getAllBreeds, getDogImages } from '../../services/api';
+import { getAllBreeds, getDogImages, IDogImagesResponse } from '../../services/api';
 import { useBreed } from '../../hooks/useBreed';
 import DogImageCard from '../../components/DogImageCard';
+import { Link } from 'react-router-dom';
 
 const MainPage: React.FC = () => {
   const {
@@ -12,6 +13,7 @@ const MainPage: React.FC = () => {
     errorFromApi,
     breeds,
     selectedBreed,
+    setSelectedBreed,
     setDogImages,
     dogImages,
   } = useBreed();
@@ -26,7 +28,7 @@ const MainPage: React.FC = () => {
         setErrorFromApi(error.message);
       }
     })();
-  }, []);
+  }, [setBreeds, setErrorFromApi]);
 
   useEffect(() => {
     if (!selectedBreed) {
@@ -36,13 +38,12 @@ const MainPage: React.FC = () => {
     (async () => {
       try {
         const response = await getDogImages(selectedBreed);
-        console.log(response);
-        setDogImages(response.message as string[]);
+        setDogImages(response as IDogImagesResponse[]);
       } catch (error) {
         setErrorFromApi(error.message);
       }
     })();
-  }, [selectedBreed]);
+  }, [setDogImages, selectedBreed, setErrorFromApi]);
 
   if (errorFromApi) {
     return <span>{errorFromApi}</span>;
@@ -52,10 +53,12 @@ const MainPage: React.FC = () => {
     <>
       <Navbar />
       <Container>
-        <Select options={breeds}></Select>
+        <Select setState={setSelectedBreed} value={selectedBreed} options={breeds}></Select>
         <Grid>
-          {dogImages.map(image => (
-            <DogImageCard key={image} dog={image} />
+          {dogImages.map(dog => (
+            <Link key={dog.id} to={`/edit/${dog.id}`}>
+              <DogImageCard dog={dog.image} />
+            </Link>
           ))}
         </Grid>
       </Container>

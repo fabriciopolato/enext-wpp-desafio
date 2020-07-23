@@ -48,9 +48,7 @@ const DogDetails: React.FC = () => {
       setColor(savedDog.color);
       setFont(savedDog.font);
     }
-
-    console.log(savedDog);
-  }, [setDogName, setColor, setFont]);
+  }, [setDogName, setColor, setFont, selectedDog.id]);
 
   const handleSaveDogOnLocalStorage = () => {
     const dogsInfo = {

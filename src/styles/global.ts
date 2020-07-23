@@ -31,7 +31,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
+    background: rgb(69,69,69);
     -webkit-font-smoothing: antialiased;
     scrollbar-width: thin;
     scrollbar-color: #90A4AE #CFD8DC;

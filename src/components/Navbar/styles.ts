@@ -5,14 +5,19 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background-color: 'white';
-  box-shadow: 5px 1px 5px 5px #eee;
+  background-color: whitesmoke;
 
   padding: 0 50px;
   margin-bottom: 200px;
 
-  > a {
+  img {
+    height: 100%;
+  }
+
+  a {
     text-decoration: none;
     color: red;
+    margin: 0;
+    padding: 0;
   }
 `;

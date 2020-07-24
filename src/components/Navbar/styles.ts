@@ -5,10 +5,8 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background-color: whitesmoke;
-
   padding: 0 50px;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
 
   img {
     height: 100%;
@@ -19,5 +17,7 @@ export const Container = styled.div`
     color: red;
     margin: 0;
     padding: 0;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 `;

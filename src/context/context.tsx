@@ -17,6 +17,8 @@ export interface IContext {
   setColor: Dispatch<SetStateAction<string>>;
   dogName: string;
   setDogName: Dispatch<SetStateAction<string>>;
+  savedMessage: boolean;
+  setSavedMessage: Dispatch<SetStateAction<boolean>>;
 }
 
 interface IDogImages {
@@ -35,6 +37,7 @@ const ContextProvider: React.FC = ({ children }) => {
   const [font, setFont] = useState('');
   const [color, setColor] = useState('');
   const [dogName, setDogName] = useState('');
+  const [savedMessage, setSavedMessage] = useState(false);
 
   return (
     <Context.Provider
@@ -55,6 +58,8 @@ const ContextProvider: React.FC = ({ children }) => {
         setColor,
         dogName,
         setDogName,
+        savedMessage,
+        setSavedMessage,
       }}
     >
       {children}

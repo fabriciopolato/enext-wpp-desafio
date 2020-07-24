@@ -1,12 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  /* @font-face {
-    font-family: 'Museo';
-    src: local('Museo'), local('FontName'),
-    font-weight: 300;
-    font-style: normal;
-  } */
 
   * {
     margin: 0;
@@ -27,11 +21,11 @@ export default createGlobalStyle`
 
   html {
     font-size: 10px;
-    /* font-family: 'Raleway', serif; */
+    font-family: 'Raleway', serif;
+    letter-spacing: 1px;
   }
 
   body {
-    background: rgb(69,69,69);
     -webkit-font-smoothing: antialiased;
     scrollbar-width: thin;
     scrollbar-color: #90A4AE #CFD8DC;

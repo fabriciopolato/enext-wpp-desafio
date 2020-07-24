@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import MainPage from '../pages/MainPage';
-import About from '../pages/About';
 import DogDetails from '../pages/DogDetails';
 
 const Routes: React.FC = () => (
@@ -10,7 +9,6 @@ const Routes: React.FC = () => (
     <Switch>
       <Route exact path="/" component={MainPage} />
       <Route exact path="/edit/:id" component={DogDetails} />
-      <Route exact path="/about" component={About} />
     </Switch>
   </Router>
 );

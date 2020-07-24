@@ -54,12 +54,7 @@ const MainPage: React.FC = () => {
     <Container>
       <Navbar />
       <Content>
-        <Select
-          message="select a breed"
-          setState={setSelectedBreed}
-          value={selectedBreed}
-          options={breeds}
-        ></Select>
+        <Select setState={setSelectedBreed} options={breeds}></Select>
         <Grid>
           {dogImages.map(dog => (
             <Link key={dog.id} to={`/edit/${dog.id}`}>

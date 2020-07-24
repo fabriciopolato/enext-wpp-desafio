@@ -93,17 +93,17 @@ const DogDetails: React.FC = () => {
             onChange={e => setDogName(e.target.value)}
             value={dogName}
           />
-          <Select value={font} setState={setFont} options={fonts}>
+          <Select setState={setFont} options={fonts}>
             Font:
           </Select>
-          <Select value={color} setState={setColor} options={colors}>
+          <Select setState={setColor} options={colors}>
             Color:
           </Select>
           <button
             style={savedMessage ? { backgroundColor: 'rgb(76, 175, 80)' } : {}}
             onClick={handleSaveDogOnLocalStorage}
           >
-            {savedMessage ? 'Updated' : 'Save'}
+            {savedMessage ? 'Saved' : 'Save'}
           </button>
         </Form>
       </Content>

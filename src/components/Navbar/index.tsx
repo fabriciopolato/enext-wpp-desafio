@@ -9,7 +9,6 @@ const Navbar: React.FC = () => {
       <Link to="/">
         <img src={logo} alt="enext logo" />
       </Link>
-      <Link to="/about">Sobre</Link>
     </Container>
   );
 };

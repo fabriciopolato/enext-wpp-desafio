@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #eee;
+  border: 20px solid black;
+  height: 100vh;
+  overflow-y: auto;
+`;
+
+export const Content = styled.div`
+  select {
+    margin-left: 50px;
+    width: 200px;
+  }
 `;
 
 export const Grid = styled.div`
+  margin-top: 40px;
   line-height: 0;
   column-count: 5;
   column-gap: 10px;

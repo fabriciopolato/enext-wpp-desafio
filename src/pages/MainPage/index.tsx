@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Grid } from './styles';
+import { Container, Grid, Content } from './styles';
 import { Select, Navbar } from '../../components';
 import { getAllBreeds, getDogImages, IDogImagesResponse } from '../../services/api';
 import { useBreed } from '../../hooks/useBreed';
@@ -22,7 +22,6 @@ const MainPage: React.FC = () => {
     (async () => {
       try {
         const response = await getAllBreeds();
-        console.log(response);
         setBreeds(Object.keys(response.message));
       } catch (error) {
         setErrorFromApi(error.message);
@@ -50,10 +49,15 @@ const MainPage: React.FC = () => {
   }
 
   return (
-    <>
+    <Container>
       <Navbar />
-      <Container>
-        <Select setState={setSelectedBreed} value={selectedBreed} options={breeds}></Select>
+      <Content>
+        <Select
+          message="select a breed"
+          setState={setSelectedBreed}
+          value={selectedBreed}
+          options={breeds}
+        ></Select>
         <Grid>
           {dogImages.map(dog => (
             <Link key={dog.id} to={`/edit/${dog.id}`}>
@@ -61,9 +65,9 @@ const MainPage: React.FC = () => {
             </Link>
           ))}
         </Grid>
-      </Container>
+      </Content>
       {/* <Footer/> */}
-    </>
+    </Container>
   );
 };
 

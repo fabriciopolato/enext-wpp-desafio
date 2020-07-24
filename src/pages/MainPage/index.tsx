@@ -5,6 +5,7 @@ import { getAllBreeds, getDogImages, IDogImagesResponse } from '../../services/a
 import { useBreed } from '../../hooks/useBreed';
 import DogImageCard from '../../components/DogImageCard';
 import { Link } from 'react-router-dom';
+import { setSelectedBreedInLocalStorage } from '../../services/localStorage';
 
 const MainPage: React.FC = () => {
   const {
@@ -38,6 +39,7 @@ const MainPage: React.FC = () => {
       try {
         const response = await getDogImages(selectedBreed);
         setDogImages(response as IDogImagesResponse[]);
+        setSelectedBreedInLocalStorage(response as IDogImagesResponse[]);
       } catch (error) {
         setErrorFromApi(error.message);
       }

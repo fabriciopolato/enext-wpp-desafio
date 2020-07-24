@@ -18,12 +18,17 @@ export const Container = styled.div`
     font-size: 30px;
     font-weight: 500;
   }
+
+  .css-2b097c-container {
+    margin-bottom: 10px;
+  }
 `;
 
 export const Content = styled.div<IProps>`
   display: flex;
   flex-direction: row;
-  width: 70%;
+  align-items: center;
+  width: 90%;
   height: auto;
   max-width: 700px;
   margin: 0 auto;
@@ -45,30 +50,44 @@ export const Content = styled.div<IProps>`
   }
 
   input {
-    margin: 5px 0 10px 0;
+    margin-bottom: 10px;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px 10px;
+    letter-spacing: 1px;
   }
 
   button {
     border-radius: 4px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     margin: 0 auto;
+    margin-top: 10px;
     display: block;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: #fff;
+    background-color: rgb(69, 145, 246);
+    border: none;
+    width: 100%;
+    color: white;
+    transition: background-color linear 100ms;
   }
 `;
 
 export const Photo = styled.div<IProps>`
   position: relative;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
+  height: fit-content;
 
   > img {
     display: block;
     width: 100%;
+    border-radius: 5px;
 
     @media (max-width: 800px) {
       margin-bottom: 10px;
@@ -89,11 +108,11 @@ export const Photo = styled.div<IProps>`
 `;
 
 export const Form = styled.div`
+  width: 100%;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
   align-self: center;
 
   @media (max-width: 800px) {

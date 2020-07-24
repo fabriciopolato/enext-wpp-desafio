@@ -4,6 +4,11 @@ export const Container = styled.div`
   border: 20px solid black;
   height: 100vh;
   overflow-y: auto;
+
+  .css-2b097c-container {
+    margin-left: 50px;
+    width: 200px;
+  }
 `;
 
 export const Content = styled.div`

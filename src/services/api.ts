@@ -29,7 +29,8 @@ export const getDogImages = async (breed: string): Promise<IDogImagesResponse[] 
     const response = await fetch(`${apiURL}/breed/${breed}/images`);
     const json: IDogImages = await response.json();
     const objectDog = json.message.map(image => {
-      const id = image.replace(/.*\/([\w|\d|_]+)\.jpg/g, '$1');
+      const imageId = image.split('/').pop()!;
+      const id = imageId.replace(/\..\w*/, '');
       return { image, id };
     });
     return objectDog;

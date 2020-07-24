@@ -8,6 +8,7 @@ import colors from '../../utils/colors.json';
 import {
   getDogsInfoFromLocalStorage,
   setDogsInfoInLocalStorage,
+  getSelectedBreedFromLocalStorage,
 } from '../../services/localStorage';
 
 interface Params {
@@ -29,15 +30,21 @@ const DogDetails: React.FC = () => {
     dogName,
     savedMessage,
     setSavedMessage,
+    setDogImages,
   } = useBreed();
 
   useEffect(() => {
+    if (!dogImages.length) {
+      const savedBreed = getSelectedBreedFromLocalStorage();
+      setDogImages(savedBreed);
+    }
+
     const searchedDog = dogImages.find(dog => dog.id === id);
 
     if (searchedDog) {
       setSelectedDog(searchedDog);
     }
-  }, [id, dogImages, setSelectedDog]);
+  }, [id, dogImages, setSelectedDog, setDogImages]);
 
   useEffect(() => {
     setDogName('');
@@ -82,20 +89,24 @@ const DogDetails: React.FC = () => {
           <input
             id="name"
             type="text"
-            placeholder="choose a name"
+            placeholder="Choose a name"
             onChange={e => setDogName(e.target.value)}
             value={dogName}
           />
-          <Select message="choose font type" value={font} setState={setFont} options={fonts}>
+          <Select value={font} setState={setFont} options={fonts}>
             Font:
           </Select>
-          <Select message="choose font color" value={color} setState={setColor} options={colors}>
+          <Select value={color} setState={setColor} options={colors}>
             Color:
           </Select>
-          <button onClick={handleSaveDogOnLocalStorage}>Save</button>
+          <button
+            style={savedMessage ? { backgroundColor: 'rgb(76, 175, 80)' } : {}}
+            onClick={handleSaveDogOnLocalStorage}
+          >
+            {savedMessage ? 'Updated' : 'Save'}
+          </button>
         </Form>
       </Content>
-      {savedMessage && <span>Dados salvos com sucesso</span>}
     </Container>
   );
 };

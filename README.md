@@ -10,6 +10,8 @@ After saved, the info persists even when the page is reloaded.
 
 Dog API: https://dog.ceo/dog-api/
 
+Deployed Link: https://enextwpp-test.netlify.app
+
 ### Built With:
 
 - [Typescript](https://www.typescriptlang.org/)

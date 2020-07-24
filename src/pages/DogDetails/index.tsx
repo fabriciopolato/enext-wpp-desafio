@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container } from './styles';
+import { Container, Content, Form, Photo } from './styles';
 import { useParams } from 'react-router-dom';
 import { useBreed } from '../../hooks/useBreed';
 import { Navbar, Select } from '../../components';
@@ -27,6 +27,8 @@ const DogDetails: React.FC = () => {
     color,
     setDogName,
     dogName,
+    savedMessage,
+    setSavedMessage,
   } = useBreed();
 
   useEffect(() => {
@@ -61,28 +63,40 @@ const DogDetails: React.FC = () => {
     };
 
     setDogsInfoInLocalStorage(dogsInfo);
+    setSavedMessage(true);
+    setTimeout(() => {
+      setSavedMessage(false);
+    }, 1500);
   };
 
   return (
-    <>
+    <Container>
       <Navbar />
-      <Container>
+      <Content font={font} color={color}>
+        <span>{dogName}</span>
         <img src={selectedDog.image} alt={selectedBreed} />
-        <input
-          type="text"
-          placeholder="Give a name to the dog"
-          onChange={e => setDogName(e.target.value)}
-          value={dogName}
-        />
-        <Select value={font} setState={setFont} options={fonts}>
-          Font
-        </Select>
-        <Select value={color} setState={setColor} options={colors}>
-          Color
-        </Select>
-        <button onClick={handleSaveDogOnLocalStorage}>Save</button>
-      </Container>
-    </>
+        <Form>
+          <Photo>
+            <label htmlFor="name">Name:</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="choose a name"
+              onChange={e => setDogName(e.target.value)}
+              value={dogName}
+            />
+          </Photo>
+          <Select message="choose font type" value={font} setState={setFont} options={fonts}>
+            Font:
+          </Select>
+          <Select message="choose font color" value={color} setState={setColor} options={colors}>
+            Color:
+          </Select>
+          <button onClick={handleSaveDogOnLocalStorage}>Save</button>
+        </Form>
+      </Content>
+      {savedMessage && <span>Dados salvos com sucesso</span>}
+    </Container>
   );
 };
 

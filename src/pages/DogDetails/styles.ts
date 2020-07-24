@@ -9,6 +9,7 @@ export const Container = styled.div`
   height: 100vh;
   overflow-y: auto;
   border: 20px solid black;
+  padding-bottom: 50px;
 
   > span {
     display: block;
@@ -20,39 +21,21 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div<IProps>`
+  display: flex;
+  flex-direction: row;
   width: 70%;
-  max-width: 700px;
   height: auto;
+  max-width: 700px;
   margin: 0 auto;
-  cursor: pointer;
-  background: whitesmoke;
   padding: 20px;
   border-radius: 10px;
   border: solid 5px #494949;
-  display: flex;
-  flex-direction: row;
 
-  @media (max-width: 900px) {
+  cursor: pointer;
+  background: whitesmoke;
+
+  @media (max-width: 800px) {
     flex-direction: column;
-  }
-
-  > span {
-    position: absolute;
-    font-family: ${props => props.font};
-    color: ${props => props.color};
-    font-size: 50px;
-    margin: 20px;
-    align-self: center;
-  }
-
-  img {
-    width: 70%;
-    align-self: center;
-    margin-bottom: 0;
-
-    @media (max-width: 900px) {
-      margin-bottom: 10px;
-    }
   }
 
   label {
@@ -78,8 +61,31 @@ export const Content = styled.div<IProps>`
   }
 `;
 
-export const Photo = styled.div`
+export const Photo = styled.div<IProps>`
   position: relative;
+  width: 70%;
+  margin: 0 auto;
+
+  > img {
+    display: block;
+    width: 100%;
+
+    @media (max-width: 800px) {
+      margin-bottom: 10px;
+    }
+  }
+
+  > span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    align-self: center;
+    font-family: ${props => props.font};
+    color: ${props => props.color};
+    font-size: clamp(16px, 7vw, 50px);
+    margin: 20px;
+    align-self: center;
+  }
 `;
 
 export const Form = styled.div`
@@ -90,7 +96,7 @@ export const Form = styled.div`
   width: 70%;
   align-self: center;
 
-  @media (max-width: 900px) {
+  @media (max-width: 800px) {
     margin-left: 0;
   }
 `;

@@ -66,7 +66,6 @@ const MainPage: React.FC = () => {
           ))}
         </Grid>
       </Content>
-      {/* <Footer/> */}
     </Container>
   );
 };

@@ -73,19 +73,19 @@ const DogDetails: React.FC = () => {
     <Container>
       <Navbar />
       <Content font={font} color={color}>
-        <span>{dogName}</span>
-        <img src={selectedDog.image} alt={selectedBreed} />
+        <Photo font={font} color={color}>
+          <img src={selectedDog.image} alt={selectedBreed} />
+          <span>{dogName}</span>
+        </Photo>
         <Form>
-          <Photo>
-            <label htmlFor="name">Name:</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="choose a name"
-              onChange={e => setDogName(e.target.value)}
-              value={dogName}
-            />
-          </Photo>
+          <label htmlFor="name">Name:</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="choose a name"
+            onChange={e => setDogName(e.target.value)}
+            value={dogName}
+          />
           <Select message="choose font type" value={font} setState={setFont} options={fonts}>
             Font:
           </Select>
